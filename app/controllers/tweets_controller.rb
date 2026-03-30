@@ -10,9 +10,15 @@ class TweetsController < ApplicationController
   end
 
   def create
-    @tweet = Tweet.create(tweet_params)
-    render :create
+  @tweet = Tweet.new(tweet_params)
+  if @tweet.save
+    render :create   # ← これで投稿完了ページへ
+  else
+    render :new
   end
+end
+
+
 
   def destroy
     tweet = Tweet.find(params[:id])

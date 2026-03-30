@@ -76,24 +76,105 @@ RSpec.describe 'ツイート編集', type: :system do
         find('#tweet_text').value
       ).to eq(@tweet1.text)
       # 投稿内容を編集する
+      new_image = "変更後の画像"
+      new_text = "変更後のテキスト"
+      fill_in 'tweet_image', with: new_image
+      fill_in 'tweet_text', with: new_text
       # 編集してもTweetモデルのカウントは変わらないことを確認する
+      expect {
+      find('input[name="commit"]').click
+      }.not_to change { Tweet.count }
       # 編集完了画面に遷移したことを確認する
+      # expect(page).to have_current_path(root_path)
       # 「更新が完了しました」の文字があることを確認する
       # トップページに遷移する
+      visit root_path
       # トップページには先ほど変更した内容のツイートが存在することを確認する（画像）
+      expect(page).to have_selector ".content_post[style='background-image: url(#{new_image});']"
       # トップページには先ほど変更した内容のツイートが存在することを確認する（テキスト）
+      expect(page).to have_content(new_text)
     end
   end
   context 'ツイート編集ができないとき' do
     it 'ログインしたユーザーは自分以外が投稿したツイートの編集画面には遷移できない' do
       # ツイート1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'Email', with: @tweet1.user.email
+      fill_in 'Password', with: @tweet1.user.password
+      find('input[name="commit"]').click
 
       # ツイート2に「編集」へのリンクがないことを確認する
+      expect(
+        all(".more")[0].hover
+      ).to have_no_link '編集', href: edit_tweet_path(@tweet2)
     end
     it 'ログインしていないとツイートの編集画面には遷移できない' do
       # トップページにいる
+      visit root_path
       # ツイート1に「編集」へのリンクがないことを確認する
+      expect(
+        all(".more")[0].hover
+      ).to have_no_link '編集', href: edit_tweet_path(@tweet1)
+
       # ツイート2に「編集」へのリンクがないことを確認する
+      expect(
+        all(".more")[0].hover
+      ).to have_no_link '編集', href: edit_tweet_path(@tweet2)
+    end
+  end
+end
+RSpec.describe 'ツイート削除', type: :system do
+  before do     @tweet1 = FactoryBot.create(:tweet)
+    @tweet2 = FactoryBot.create(:tweet)
+  end
+  context 'ツイート削除ができるとき' do
+    it 'ログインしたユーザーは自らが投稿したツイートの削除ができる' do
+      # ツイート1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'Email', with: @tweet1.user.email
+      fill_in 'Password', with: @tweet1.user.password
+      find('input[name="commit"]').click
+      expect(page).to have_current_path(root_path)
+      # ツイート1に「削除」へのリンクがあることを確認する
+      # 投稿を削除するとレコードの数が1減ることを確認する
+      menu = all('.more')[1]
+      menu.hover
+      expect {
+        find_button('削除').click
+      }.to change { Tweet.count }.by(-1)
+      # 削除完了画面に遷移したことを確認する
+      # 「削除が完了しました」の文字があることを確認する
+      expect(page).to have_content('削除が完了しました。')
+      # トップページに遷移する
+      # トップページにはツイート1の内容が存在しないことを確認する（画像）
+      expect(page).to have_no_selector ".content_post[style='background-image: url(#{@tweet1.image});']"
+      # トップページにはツイート1の内容が存在しないことを確認する（テキスト）
+      expect(page).to have_no_content(@tweet1.text)
+    end
+  end
+  context 'ツイート削除ができないとき' do
+    it 'ログインしたユーザーは自分以外が投稿したツイートの削除ができない' do
+      # ツイート1を投稿したユーザーでログインする
+      visit new_user_session_path
+      fill_in 'Email', with: @tweet1.user.email
+      fill_in 'Password', with: @tweet1.user.password
+      find('input[name="commit"]').click
+      # ツイート2に「削除」へのリンクがないことを確認する
+      expect(
+        all(".more")[0].hover
+      ).to have_no_link '編集', href: edit_tweet_path(@tweet2)
+    end
+    it 'ログインしていないとツイートの削除ボタンがない' do
+      # トップページに移動する
+      visit root_path
+      # ツイート1に「削除」へのリンクがないことを確認する
+      expect(
+        all(".more")[0].hover
+      ).to have_no_link '編集', href: edit_tweet_path(@tweet1)
+      # ツイート2に「削除」へのリンクがないことを確認する
+      expect(
+        all(".more")[0].hover
+      ).to have_no_link '編集', href: edit_tweet_path(@tweet2)
     end
   end
 end

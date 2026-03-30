@@ -11,6 +11,7 @@
 						</li>
 						<li>
 							<%= button_to "削除", tweet_path(tweet), method: :delete, form: { data: { turbo: false } } %>
+							<%# <%= link_to '削除', tweet_path(tweet), method: :delete %> 
 						</li>
 					<% end %>
         </ul>
