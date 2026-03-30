@@ -1,0 +1,19 @@
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+/usr/bin/ruby3.2 -I/usr/share/ruby3.2-rubygems extconf.rb
+creating Makefile
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-1pqafd sitelibdir\=./.gem.20260330-36040-1pqafd clean
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-1pqafd sitelibdir\=./.gem.20260330-36040-1pqafd
+compiling debug.c
+compiling iseq_collector.c
+linking shared-object debug/debug.so
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-1pqafd sitelibdir\=./.gem.20260330-36040-1pqafd install
+/usr/bin/install -c -m 0755 debug.so ./.gem.20260330-36040-1pqafd/debug
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/debug-1.11.1/ext/debug
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-1pqafd sitelibdir\=./.gem.20260330-36040-1pqafd clean

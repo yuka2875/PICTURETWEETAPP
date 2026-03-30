@@ -14,8 +14,8 @@ default: &default
   # encoding: utf8mb4
   encoding: utf8
   max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password: Root1234!
+  username: appuser
+  password: password
   host: <%= ENV.fetch("DB_HOST") { "127.0.0.1" } %>
 
 development:

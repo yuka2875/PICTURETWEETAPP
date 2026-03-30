@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2026_03_13_090307) do
-  create_table "comments", charset: "utf8mb3", force: :cascade do |t|
+  create_table "comments", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "text"
     t.integer "tweet_id"
@@ -19,7 +19,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_13_090307) do
     t.integer "user_id"
   end
 
-  create_table "tweets", charset: "utf8mb3", force: :cascade do |t|
+  create_table "tweets", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "image"
     t.string "text"
@@ -27,7 +27,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_13_090307) do
     t.integer "user_id"
   end
 
-  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+  create_table "users", charset: "utf8", collation: "utf8_general_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

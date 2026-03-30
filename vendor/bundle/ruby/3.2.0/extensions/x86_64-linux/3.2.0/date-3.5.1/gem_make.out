@@ -1,0 +1,25 @@
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/date-3.5.1/ext/date
+/usr/bin/ruby3.2 -I/usr/share/ruby3.2-rubygems extconf.rb
+checking for rb_category_warn()... yes
+checking for timezone in time.h with  -Werror... yes
+checking for altzone in time.h with  -Werror... no
+creating Makefile
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-xv2ilj sitelibdir\=./.gem.20260330-36040-xv2ilj clean
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-xv2ilj sitelibdir\=./.gem.20260330-36040-xv2ilj
+compiling date_core.c
+compiling date_parse.c
+compiling date_strftime.c
+compiling date_strptime.c
+linking shared-object date_core.so
+lto-wrapper: warning: using serial compilation of 4 LTRANS jobs
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-xv2ilj sitelibdir\=./.gem.20260330-36040-xv2ilj install
+/usr/bin/install -c -m 0755 date_core.so ./.gem.20260330-36040-xv2ilj
+
+current directory: /home/ec2-user/PICTURETWEETAPP/vendor/bundle/ruby/3.2.0/gems/date-3.5.1/ext/date
+make DESTDIR\= sitearchdir\=./.gem.20260330-36040-xv2ilj sitelibdir\=./.gem.20260330-36040-xv2ilj clean
